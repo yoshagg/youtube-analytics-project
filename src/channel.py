@@ -1,5 +1,3 @@
-from helper import youtube_api_manual
-
 class Channel:
     """Класс для ютуб-канала"""
 
@@ -9,4 +7,4 @@ class Channel:
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
-        print(youtube_api_manual[self.channel_id])
+        print(self.channel_id)
