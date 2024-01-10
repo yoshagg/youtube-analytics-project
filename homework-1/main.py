@@ -9,8 +9,8 @@ from googleapiclient.discovery import build
 
 import isodate
 
-api_key: str = 'AIzaSyBb8487878bN7FcrCmx5Wnfy9In8WFqVS0'
-# api_key: str = os.getenv('API_KEY')
+# api_key: str = 'AIzaSyBb8487878bN7FcrCmx5Wnfy9In8WFqVS0'
+api_key: str = os.getenv('API_KEY')
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 def printj(dict_to_print: dict) -> None:
