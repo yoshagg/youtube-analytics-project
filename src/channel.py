@@ -15,7 +15,8 @@ class Channel:
         print(self.channel_id)
 
     def get_service(self):
-        return self
+        api_key: str = os.getenv('API_KEY')
+        return build('youtube', 'v3', developerKey=api_key)
 
     def to_json(self):
         with open('information.json', 'a') as file:
