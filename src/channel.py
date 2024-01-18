@@ -10,6 +10,9 @@ class Channel:
         self.video_count = video_count
         self.view_count = view_count
 
+    def __str__(self):
+        return f'{self.title} - {self.url}'
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(self.channel_id)
