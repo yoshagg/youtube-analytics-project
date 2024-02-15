@@ -35,22 +35,19 @@ class PLVideo(Video):
     def __init__(self, video_id, pl_id):
         self.video_id = video_id
         self.pl_id = pl_id
+        self.info = self.playlist_request()
+        self.make_attributes()
+
 
     def __str__(self):
         return f'{self.video_title}'
 
     def playlist_request(self):
-        service = super.get_service()
+        service = Video.get_service()
         return service.playlistItems().list(playlistId=self.pl_id,
                                                part='contentDetails',
                                                maxResults=50,
                                                ).execute()
-
-    def perebor(self):
-        for video in self.playlist_request['items']:
-            iso_8601_duration = video['contentDetails']['duration']
-            duration = isodate.parse_duration(iso_8601_duration)
-            print(duration)
 
     def make_attributes(self):
         info = self.video_request()
