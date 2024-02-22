@@ -66,5 +66,5 @@ class Channel:
             file.write(f"""{self.views_count}\n\n""")
 
 
-c = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
-print(c)
+# c = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
+# print(c)
