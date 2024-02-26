@@ -15,19 +15,28 @@ class Video:
     @classmethod
     def get_service(cls):
         api_key: str = os.getenv('API_KEY')
-        return build('youtube', 'v3', developerKey=api_key)
+        service = build('youtube', 'v3', developerKey=api_key)
+        return service
 
     def video_request(self):
         service = Video.get_service()
-        return service.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+        info = service.videos().list(part='snippet,statistics,contentDetails,topicDetails',
                                                 id=self.video_id
                                                 ).execute()
 
+
     def make_attributes(self):
-        self.video_title: str = self.info['items'][0]['snippet']['title']
-        self.view_count: int = self.info['items'][0]['statistics']['viewCount']
-        self.like_count: int = self.info['items'][0]['statistics']['likeCount']
-        self.comment_count: int = self.info['items'][0]['statistics']['commentCount']
+        try:
+            self.video_title: str = self.info['items'][0]['snippet']['title']
+            self.view_count: int = self.info['items'][0]['statistics']['viewCount']
+            self.like_count: int = self.info['items'][0]['statistics']['likeCount']
+            self.comment_count: int = self.info['items'][0]['statistics']['commentCount']
+        except Exception:
+            self.video_title = None
+            self.view_count = None
+            self.like_count = None
+            self.comment_count = None
+
 
 class PLVideo(Video):
 
@@ -42,3 +51,7 @@ class PLVideo(Video):
                                                part='contentDetails',
                                                maxResults=50,
                                                ).execute()
+
+e = Video("broken")
+e.video_request()
+
