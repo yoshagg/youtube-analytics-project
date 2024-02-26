@@ -24,23 +24,17 @@ class Video:
                                                 ).execute()
 
     def make_attributes(self):
-        info = self.video_request()
-        self.video_title: str = info['items'][0]['snippet']['title']
-        self.view_count: int = info['items'][0]['statistics']['viewCount']
-        self.like_count: int = info['items'][0]['statistics']['likeCount']
-        self.comment_count: int = info['items'][0]['statistics']['commentCount']
+        self.video_title: str = self.info['items'][0]['snippet']['title']
+        self.view_count: int = self.info['items'][0]['statistics']['viewCount']
+        self.like_count: int = self.info['items'][0]['statistics']['likeCount']
+        self.comment_count: int = self.info['items'][0]['statistics']['commentCount']
 
 class PLVideo(Video):
 
     def __init__(self, video_id, pl_id):
         self.video_id = video_id
         self.pl_id = pl_id
-        self.info = self.playlist_request()
-        self.make_attributes()
-
-
-    def __str__(self):
-        return f'{self.video_title}'
+        super.make_attributes()
 
     def playlist_request(self):
         service = Video.get_service()
@@ -48,10 +42,3 @@ class PLVideo(Video):
                                                part='contentDetails',
                                                maxResults=50,
                                                ).execute()
-
-    def make_attributes(self):
-        info = self.video_request()
-        self.video_title: str = info['items'][0]['snippet']['title']
-        self.view_count: int = info['items'][0]['statistics']['viewCount']
-        self.like_count: int = info['items'][0]['statistics']['likeCount']
-        self.comment_count: int = info['items'][0]['statistics']['commentCount']

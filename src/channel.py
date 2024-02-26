@@ -64,7 +64,3 @@ class Channel:
             file.write(f"""{self.subscriber_count}\n""")
             file.write(f"""{self.video_count}\n""")
             file.write(f"""{self.views_count}\n\n""")
-
-
-# c = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
-# print(c)
