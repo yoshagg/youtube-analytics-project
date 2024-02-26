@@ -49,7 +49,3 @@ class PlayList:
 
     # def show_best_video(self):
     #     return self.info['items'][0]['snippet']['thumbnails']['statistics'][max('likecount')]
-
-
-pl = PlayList('PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw')
-print(pl.info)
